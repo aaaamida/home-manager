@@ -4,8 +4,6 @@
 	imports = [
 		./pkgs.nix
 		./programs.nix
-
-                # inputs.zen-browser.homeModules.twilight
 	];
 
         home = {
