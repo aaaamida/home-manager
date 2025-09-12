@@ -11,7 +11,7 @@
 
                 oh-my-zsh = {
                         enable = true;
-                        plugins = [ 
+                        plugins = [
                                 "sudo" "safe-paste" "git"
                                 "zoxide" "zsh-interactive-cd"
                         ];
@@ -22,9 +22,10 @@
                         ls = "eza -laTL 2 --git --git-repos --icons=always --hyperlink ";
                         cat = "bat";
                         hm = "home-manager";
-                        hms = "home-manager switch --flake /home/amida/.hm/ --impure";
-                        nvim = "/home/amida/.bin/nvim";
+                        hms = "home-manager switch --impure -b backup";
 			nv = "nvim";
+                        fvim = "/home/amida/.bin/fvim";
+                        lg = "lazygit";
                 };
 
                 initContent = ''
@@ -38,12 +39,17 @@
                 };
         };
 
-        #programs.neovim = {
-        #       enable = true;
-        #        viAlias = true;
-        #        vimAlias = true;
-        #        extraConfig = builtins.readFile /home/amida/.df/nvim/init.lua;
-        #};
+        programs.neovim = {
+                enable = true;
+                viAlias = true;
+                vimAlias = true;
+        };
+
+        xdg.configFile.neovim = {
+                recursive = true;
+                source = /home/amida/.df/nvim;
+                target = "nvim";
+        };
 
         programs.kitty = {
                 enable = true;
