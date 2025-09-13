@@ -22,9 +22,8 @@
                         ls = "eza -laTL 2 --git --git-repos --icons=always --hyperlink ";
                         cat = "bat";
                         hm = "home-manager";
-                        hms = "home-manager switch --impure -b backup";
+                        hms = "home-manager switch --impure";
 			nv = "nvim";
-                        fvim = "/home/amida/.bin/fvim";
                         lg = "lazygit";
                 };
 
@@ -45,32 +44,17 @@
                 vimAlias = true;
         };
 
-        xdg.configFile.neovim = {
-                recursive = true;
-                source = /home/amida/.df/nvim;
-                target = "nvim";
-        };
-
-        programs.kitty = {
-                enable = true;
-                extraConfig = builtins.readFile ~/.config/kitty/main.conf;
-        };
+        programs.kitty.enable = true;
 
         programs.tmux = {
                 enable = true;
                 terminal = "screen-256color";
-                extraConfig = builtins.readFile /home/amida/.config/tmux/main.conf;
         };
 
-        programs.btop = {
-                enable = true;
-                extraConfig = builtins.readFile /home/amida/.config/btop/main.conf;
-                themes = {
-                        pastelbian = builtins.readFile /home/amida/.config/btop/themes/custom.theme;
-                };
-        };
+        programs.btop.enable = true;
 
 	programs.yazi = {
 		enable = true;
+                enableZshIntegration = true;
 	};
 }

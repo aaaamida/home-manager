@@ -3,9 +3,9 @@ let
         zen-browser = (builtins.getFlake https://github.com/0xc000022070/zen-browser-flake/tarball/master).packages.x86_64-linux.default;
         freedownloadmanager = import (pkgs.fetchFromGitHub {
                 owner = "aaaamida";
-                repo = "nix-fdm";
-                rev = "master";
-                hash = "sha256-QYIM2bcK9WOhvbjZ8REHAdwbWLTz9fEh+34ssPM3j4Q=";
+                repo  = "nix-fdm";
+                rev   = "master";
+                hash  = "sha256-QYIM2bcK9WOhvbjZ8REHAdwbWLTz9fEh+34ssPM3j4Q=";
         }) {};
 in
 {

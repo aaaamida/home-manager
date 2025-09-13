@@ -4,6 +4,7 @@
 	imports = [
 		./pkgs.nix
 		./programs.nix
+                ./files.nix
 	];
 
         home = {
