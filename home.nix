@@ -5,6 +5,7 @@
 		./pkgs.nix
 		./programs.nix
                 ./files.nix
+                ./hypr.nix
 	];
 
         home = {

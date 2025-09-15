@@ -7,10 +7,11 @@ let
                 rev   = "master";
                 hash  = "sha256-QYIM2bcK9WOhvbjZ8REHAdwbWLTz9fEh+34ssPM3j4Q=";
         }) {};
+        alien = import (builtins.fetchTarball https://github.com/thiagokokada/nix-alien/tarball/master) {};
 in
 {
         home.packages = with pkgs; [
-                # GUI programs
+                # GUI apps
                 zen-browser
                 discord
                 youtube-music
@@ -29,6 +30,10 @@ in
                 bat
                 eza
                 fd
+                p7zip
+                unzip
+                asciiquarium
+                libnotify
 
                 # PL tools
                 rustup
@@ -38,7 +43,20 @@ in
                 gnumake
                 cmake
 
+                # wm
+                wl-clipboard
+                wl-clipboard-x11
+                xdg-desktop-portal-hyprland
+                hyprcursor
+                hyprpaper
+                hyprshot
+                waybar
+                flameshot
+                wev
+
                 # misc
+                papirus-icon-theme
                 nerd-fonts.iosevka-term-slab
-        ];
+        ]
+        ++ [ alien.nix-alien ];
 }

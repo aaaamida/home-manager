@@ -1,5 +1,3 @@
-# packages w configs go here
-
 { config, pkgs, inputs, ... }:
 
 {
@@ -23,12 +21,16 @@
                         cat = "bat";
                         hm = "home-manager";
                         hms = "home-manager switch --impure";
-			nv = "nvim";
+                	   		nv = "nvim";
                         lg = "lazygit";
+                        reboot = "sudo systemctl reboot";
+                        poweroff = "sudo systemctl poweroff";
+                        alien = "nix-alien";
                 };
 
                 initContent = ''
                         source ~/.extra.zsh
+                        warp-cli connect > /dev/null
                 '';
 
                 history = {
@@ -42,16 +44,37 @@
                 enable = true;
                 viAlias = true;
                 vimAlias = true;
+                plugins = [
+                        pkgs.vimPlugins.nvim-treesitter.withAllGrammars
+                ];
+        };
+
+        programs.helix = {
+                enable = true;
+                extraPackages = with pkgs; [
+                         nil
+                         #rust-analyzer-unwrapped
+                 ];
         };
 
         programs.kitty.enable = true;
 
         programs.tmux = {
                 enable = true;
-                terminal = "screen-256color";
+                terminal = "xterm-direct";
         };
 
         programs.btop.enable = true;
+
+        programs.rofi = {
+                enable = true;
+                theme = /home/amida/.df/hypr/rofi/themes/dmenu.rasi;
+        };
+
+        programs.waybar = {
+                enable = true;
+                systemd.enable = true;
+        };
 
 	programs.yazi = {
 		enable = true;
