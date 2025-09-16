@@ -16,6 +16,8 @@ in
                 discord
                 youtube-music
                 freedownloadmanager
+                feh
+                mpv
 
                 # CLI utils
                 lazygit
@@ -34,6 +36,9 @@ in
                 unzip
                 asciiquarium
                 libnotify
+                ripgrep
+                killall
+                playerctl
 
                 # PL tools
                 rustup
@@ -53,10 +58,13 @@ in
                 waybar
                 flameshot
                 wev
+                mpvpaper
+                wlsunset
 
                 # misc
                 papirus-icon-theme
                 nerd-fonts.iosevka-term-slab
+                pavucontrol
         ]
         ++ [ alien.nix-alien ];
 }

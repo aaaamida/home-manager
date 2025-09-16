@@ -236,15 +236,15 @@
 
         services.hyprpaper.enable = true;
 
-        services.wlsunset = {
-                enable = true;
-                temperature = {
-                        day = 7000;
-                        night = 6900;
-                };
-                sunrise = "06:00";
-                sunset = "18:00";
-        };
+        # services.wlsunset = {
+        #         enable = true;
+        #         temperature = {
+        #                 day = 7000;
+        #                 night = 6900;
+        #         };
+        #         sunrise = "06:00";
+        #         sunset = "18:00";
+        # };
 
         services.dunst = {
                 enable = true;
