@@ -18,6 +18,7 @@ in
                 freedownloadmanager
                 feh
                 mpv
+                kdePackages.filelight
 
                 # CLI utils
                 lazygit
@@ -44,9 +45,13 @@ in
                 rustup
                 clang
                 python314
+                gcc
                 libgcc
                 gnumake
                 cmake
+                nodejs_24
+                bun
+                go
 
                 # wm
                 wl-clipboard
