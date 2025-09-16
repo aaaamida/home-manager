@@ -21,11 +21,13 @@
                         cat = "bat";
                         hm = "home-manager";
                         hms = "home-manager switch --impure";
-                	   		nv = "nvim";
+                        nv = "nvim";
                         lg = "lazygit";
                         reboot = "sudo systemctl reboot";
                         poweroff = "sudo systemctl poweroff";
                         alien = "nix-alien";
+                        nsh = "nix-shell --command 'zsh'";
+                        ngc = "nix-collect-garbage";
                 };
 
                 initContent = ''

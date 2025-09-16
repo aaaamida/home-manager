@@ -6,6 +6,7 @@
 		./programs.nix
                 ./files.nix
                 ./hypr.nix
+                ./systemd.nix
 	];
 
         home = {

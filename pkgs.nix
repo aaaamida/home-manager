@@ -45,7 +45,6 @@ in
                 rustup
                 clang
                 python314
-                gcc
                 libgcc
                 gnumake
                 cmake
@@ -65,6 +64,7 @@ in
                 wev
                 mpvpaper
                 wlsunset
+                brightnessctl
 
                 # misc
                 papirus-icon-theme
