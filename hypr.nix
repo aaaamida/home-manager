@@ -13,6 +13,8 @@
 
         services.hyprpaper.enable = true;
 
+        services.hypridle.enable = true;
+
         services.dunst = {
                 enable = true;
                 configFile = /home/amida/.df/hypr/dunst/dunstrc;
