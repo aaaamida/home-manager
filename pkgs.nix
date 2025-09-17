@@ -40,6 +40,7 @@ in
                 ripgrep
                 killall
                 playerctl
+                opencode
 
                 # PL tools
                 rustup

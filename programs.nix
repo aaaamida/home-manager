@@ -31,7 +31,20 @@
                 };
 
                 initContent = ''
-                        source ~/.extra.zsh
+                        export PATH=$PATH:$HOME/.bin:$HOME/.cargo/bin/
+
+                        function cargo() {
+                                if [ $1 = "run" ] ||
+                                [ $1 = "check" ] ||
+                                [ $1 = "test" ]; then
+                                        command cargo mommy "$@"
+                                else
+                                        command cargo "$@"
+                                fi
+                        }
+
+                        eval $(zoxide init zsh)
+                        eval $(fzf --zsh)
                         warp-cli connect > /dev/null
                 '';
 
