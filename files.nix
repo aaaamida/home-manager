@@ -43,6 +43,12 @@
                         force = true;
                 };
 
+                hyprlock = {
+                        source = /home/amida/.df/hypr/lock;
+                        target = "hyprlock";
+                        force = true;
+                };
+
                 dunst = {
                         source = /home/amida/.df/hypr/dunst;
                         target = "dunst";
