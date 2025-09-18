@@ -14,7 +14,7 @@
         services.hyprpaper.enable = true;
 
         services.hypridle = {
-                enable = true;
+                enable = false;
                 settings = {
                         general = {
                                 lock_cmd = "pidof hyprlock || hyprlock";

@@ -18,7 +18,6 @@ in
                 freedownloadmanager
                 feh
                 mpv
-                kdePackages.filelight
 
                 # CLI utils
                 lazygit
@@ -60,6 +59,7 @@ in
                 hyprcursor
                 hyprpaper
                 hyprshot
+                hypridle
                 waybar
                 flameshot
                 wev
@@ -72,5 +72,12 @@ in
                 nerd-fonts.iosevka-term-slab
                 pavucontrol
         ]
-        ++ [ alien.nix-alien ];
+        ++ [ alien.nix-alien ]
+        ++ (with kdePackages; [
+                filelight
+        ])
+        ++ (with python313Packages; [
+                truststore
+                altair
+        ]);
 }
