@@ -51,6 +51,7 @@ in
                 nodejs_24
                 bun
                 go
+                typst
 
                 # wm
                 wl-clipboard

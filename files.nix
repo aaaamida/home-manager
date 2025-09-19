@@ -49,6 +49,12 @@
                         force = true;
                 };
 
+                hypridle = {
+                        source = /home/amida/.df/hypr/idle;
+                        target = "hypridle";
+                        force = true;
+                };
+
                 dunst = {
                         source = /home/amida/.df/hypr/dunst;
                         target = "dunst";
