@@ -8,6 +8,13 @@ let
                 hash  = "sha256-QYIM2bcK9WOhvbjZ8REHAdwbWLTz9fEh+34ssPM3j4Q=";
         }) {};
         alien = import (builtins.fetchTarball https://github.com/thiagokokada/nix-alien/tarball/master) {};
+        krisp-patcher = pkgs.writers.writePython3Bin "krisp-patcher" {
+                libraries = with pkgs.python313Packages; [ capstone pyelftools ];
+                flakeIgnore = [ "E501" "F403" "F405" ];
+        } (builtins.readFile (pkgs.fetchurl {
+                url = "https://pastebin.com/raw/8tQDsMVd";
+                sha256 = "sha256-IdXv0MfRG1/1pAAwHLS2+1NESFEz2uXrbSdvU9OvdJ8=";
+        }));
 in
 {
         home.packages = with pkgs; [
@@ -40,6 +47,7 @@ in
                 killall
                 playerctl
                 opencode
+                krisp-patcher
 
                 # PL tools
                 rustup
