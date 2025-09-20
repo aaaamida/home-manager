@@ -25,6 +25,8 @@ in
                 freedownloadmanager
                 feh
                 mpv
+                libreoffice-qt6-fresh
+                zathura
 
                 # CLI utils
                 lazygit

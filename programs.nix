@@ -28,6 +28,7 @@
                         alien = "nix-alien";
                         nsh = "nix-shell --command 'zsh'";
                         ngc = "nix-collect-garbage";
+                        open = "xdg-open";
                 };
 
                 initContent = ''
@@ -66,11 +67,10 @@
 
         programs.helix = {
                 enable = true;
-                extraPackages = with pkgs; [
-                         nil
-                         #rust-analyzer-unwrapped
-                 ];
+                extraPackages = with pkgs; [ nil ];
         };
+
+        programs.zed-editor.enable = true;
 
         programs.kitty.enable = true;
 
