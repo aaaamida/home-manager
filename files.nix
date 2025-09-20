@@ -87,7 +87,7 @@
                         "application/x-bittorrent"       = "freedownloadmanager_torrent.desktop";
                 };
 
-                addedAssociations = {
+                associations.added = {
                         "x-scheme-handler/http"         = [ "zen-beta.desktop" "userapp-Zen-SE40C3.desktop" ];
                         "x-scheme-handler/https"        = [ "zen-beta.desktop" "userapp-Zen-SE40C3.desktop" ];
                         "x-scheme-handler/chrome"       = [ "zen-beta.desktop" "userapp-Zen-SE40C3.desktop" ];
