@@ -49,6 +49,7 @@ in
                 killall
                 playerctl
                 opencode
+                file
                 krisp-patcher
 
                 # PL tools
@@ -77,6 +78,7 @@ in
                 mpvpaper
                 wlsunset
                 brightnessctl
+                wob
 
                 # misc
                 papirus-icon-theme
