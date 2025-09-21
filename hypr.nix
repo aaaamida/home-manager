@@ -11,6 +11,11 @@
 
         programs.hyprlock.enable = true;
 
+        programs.hyprpanel = {
+                enable = true;
+                dontAssertNotificationDaemons = true;
+        };
+
         services.dunst = {
                 enable = true;
                 configFile = /home/amida/.df/hypr/dunst/dunstrc;

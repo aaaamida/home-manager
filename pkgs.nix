@@ -78,12 +78,13 @@ in
                 mpvpaper
                 wlsunset
                 brightnessctl
-                wob
+                nwg-displays
 
                 # misc
                 papirus-icon-theme
                 nerd-fonts.iosevka-term-slab
                 pavucontrol
+                bluez
         ]
         ++ [ alien.nix-alien ]
         ++ (with kdePackages; [
