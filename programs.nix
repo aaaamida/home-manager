@@ -29,6 +29,7 @@
                         nsh = "nix-shell --command 'zsh'";
                         ngc = "nix-collect-garbage";
                         open = "xdg-open";
+                        cnf = "command-not-found";
                 };
 
                 initContent = ''

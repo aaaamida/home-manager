@@ -17,7 +17,7 @@
         };
 
         services.dunst = {
-                enable = true;
+                enable = false;
                 configFile = /home/amida/.df/hypr/dunst/dunstrc;
         };
 

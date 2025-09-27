@@ -1,6 +1,7 @@
 { config, pkgs, inputs, ... }:
 let
         zen-browser = (builtins.getFlake https://github.com/0xc000022070/zen-browser-flake/tarball/master).packages.x86_64-linux.default;
+        ags = (builtins.getFlake https://github.com/aylur/ags/tarball/master).packages.x86_64-linux.default;
         freedownloadmanager = import (pkgs.fetchFromGitHub {
                 owner = "aaaamida";
                 repo  = "nix-fdm";
@@ -51,6 +52,7 @@ in
                 opencode
                 file
                 krisp-patcher
+                ookla-speedtest
 
                 # PL tools
                 rustup
@@ -79,16 +81,21 @@ in
                 wlsunset
                 brightnessctl
                 nwg-displays
+                ags
 
                 # misc
                 papirus-icon-theme
                 nerd-fonts.iosevka-term-slab
                 pavucontrol
                 bluez
+                amdgpu_top
+                nvtopPackages.amd
+                docker
         ]
         ++ [ alien.nix-alien ]
         ++ (with kdePackages; [
                 filelight
+                qt6ct
         ])
         ++ (with python313Packages; [
                 truststore

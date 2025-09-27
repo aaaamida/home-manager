@@ -2,8 +2,8 @@
 
 {
 	imports = [
-		./pkgs.nix
-		./programs.nix
+                ./pkgs.nix
+                ./programs.nix
                 ./files.nix
                 ./hypr.nix
                 ./systemd.nix
