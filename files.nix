@@ -144,5 +144,12 @@
                         exec = "zen-beta %f";
                         mimeType = [ "image/svg+xml" ];
                 };
+
+                zzz = {
+                        name = "Zenless Zone Zero";
+                        exec = "umu-run /home/amida/Games/ZZZ.exe %f";
+                        terminal = false;
+                        categories = [ "Game" ];
+                };
         };
 }

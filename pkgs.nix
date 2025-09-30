@@ -5,7 +5,7 @@ let
         freedownloadmanager = import (pkgs.fetchFromGitHub {
                 owner = "aaaamida";
                 repo  = "nix-fdm";
-                rev   = "master";
+                rev   = "310d406923c68d4258a1d50cbc298b6163bacc9c";
                 hash  = "sha256-QYIM2bcK9WOhvbjZ8REHAdwbWLTz9fEh+34ssPM3j4Q=";
         }) {};
         alien = import (builtins.fetchTarball https://github.com/thiagokokada/nix-alien/tarball/master) {};
@@ -64,6 +64,7 @@ in
                 nodejs_24
                 bun
                 go
+                gopls
                 typst
 
                 # wm
@@ -91,6 +92,11 @@ in
                 amdgpu_top
                 nvtopPackages.amd
                 docker
+                wineWowPackages.full
+                umu-launcher
+                (lutris.override {
+                        extraLibraries = pkgs: [ libadwaita ];
+                })
         ]
         ++ [ alien.nix-alien ]
         ++ (with kdePackages; [
