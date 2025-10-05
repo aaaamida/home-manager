@@ -28,6 +28,7 @@ in
                 mpv
                 libreoffice-qt6-fresh
                 zathura
+                obs-studio
 
                 # CLI utils
                 lazygit
@@ -53,6 +54,8 @@ in
                 file
                 krisp-patcher
                 ookla-speedtest
+                ffmpeg
+                jmtpfs
 
                 # PL tools
                 rustup
@@ -85,6 +88,7 @@ in
                 ags
 
                 # misc
+                bluetuith
                 papirus-icon-theme
                 nerd-fonts.iosevka-term-slab
                 pavucontrol
