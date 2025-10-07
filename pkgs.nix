@@ -56,6 +56,7 @@ in
                 ookla-speedtest
                 ffmpeg
                 jmtpfs
+                jq
 
                 # PL tools
                 rustup
