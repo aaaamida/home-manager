@@ -2,13 +2,14 @@
 let
         zen-browser = (builtins.getFlake https://github.com/0xc000022070/zen-browser-flake/tarball/master).packages.x86_64-linux.default;
         ags = (builtins.getFlake https://github.com/aylur/ags/tarball/master).packages.x86_64-linux.default;
+        orange3 = (builtins.getFlake https://github.com/scuggo/orange3-nix-fix/tarball/master).packages.x86_64-linux.default;
+        alien = import (builtins.fetchTarball https://github.com/thiagokokada/nix-alien/tarball/master) {};
         freedownloadmanager = import (pkgs.fetchFromGitHub {
                 owner = "aaaamida";
                 repo  = "nix-fdm";
                 rev   = "310d406923c68d4258a1d50cbc298b6163bacc9c";
                 hash  = "sha256-QYIM2bcK9WOhvbjZ8REHAdwbWLTz9fEh+34ssPM3j4Q=";
         }) {};
-        alien = import (builtins.fetchTarball https://github.com/thiagokokada/nix-alien/tarball/master) {};
         krisp-patcher = pkgs.writers.writePython3Bin "krisp-patcher" {
                 libraries = with pkgs.python313Packages; [ capstone pyelftools ];
                 flakeIgnore = [ "E501" "F403" "F405" ];
@@ -29,6 +30,7 @@ in
                 libreoffice-qt6-fresh
                 zathura
                 obs-studio
+                orange3
 
                 # CLI utils
                 lazygit
@@ -57,18 +59,16 @@ in
                 ffmpeg
                 jmtpfs
                 jq
+                difftastic
 
                 # PL tools
                 rustup
-                clang
                 python314
+                clang
                 libgcc
                 gnumake
                 cmake
-                nodejs_24
-                bun
                 go
-                gopls
                 typst
 
                 # wm
@@ -109,7 +109,8 @@ in
                 qt6ct
         ])
         ++ (with python313Packages; [
-                truststore
-                altair
+                ds4drv
+                # truststore
+                # orange3
         ]);
 }

@@ -39,7 +39,7 @@
                         reboot = "sudo systemctl reboot";
                         poweroff = "sudo systemctl poweroff";
                         alien = "nix-alien";
-                        nsh = "nix-shell --command 'zsh'";
+                        nsh = "nix-shell --command 'zsh; exit'";
                         ngc = "nix-collect-garbage";
                         open = "xdg-open";
                         cnf = "command-not-found";
@@ -81,6 +81,15 @@
                 ];
         };
 
+        programs.git = {
+                enable = true;
+                extraConfig = {
+                        diff = {
+                                external = "difft";
+                        };
+                };
+        };
+
         programs.helix = {
                 enable = true;
                 extraPackages = with pkgs; [ nil ];
@@ -93,7 +102,14 @@
                 nix-direnv.enable = true;
         };
 
-        programs.zed-editor.enable = true;
+        programs.zed-editor = {
+                enable = true;
+                package = pkgs.zed-editor-fhs;
+                extraPackages = with pkgs; [
+                        libz
+                        nerd-fonts.iosevka-term-slab
+                ];
+        };
 
         programs.kitty.enable = true;
 
