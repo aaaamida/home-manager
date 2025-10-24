@@ -4,12 +4,15 @@ let
         ags = (builtins.getFlake https://github.com/aylur/ags/tarball/master).packages.x86_64-linux.default;
         orange3 = (builtins.getFlake https://github.com/scuggo/orange3-nix-fix/tarball/master).packages.x86_64-linux.default;
         alien = import (builtins.fetchTarball https://github.com/thiagokokada/nix-alien/tarball/master) {};
+        winboat = (builtins.getFlake https://github.com/TibixDev/winboat/tarball/master).packages.x86_64-linux;
+
         freedownloadmanager = import (pkgs.fetchFromGitHub {
                 owner = "aaaamida";
                 repo  = "nix-fdm";
                 rev   = "310d406923c68d4258a1d50cbc298b6163bacc9c";
                 hash  = "sha256-QYIM2bcK9WOhvbjZ8REHAdwbWLTz9fEh+34ssPM3j4Q=";
         }) {};
+
         krisp-patcher = pkgs.writers.writePython3Bin "krisp-patcher" {
                 libraries = with pkgs.python313Packages; [ capstone pyelftools ];
                 flakeIgnore = [ "E501" "F403" "F405" ];
@@ -79,7 +82,7 @@ in
                 hyprpaper
                 hyprshot
                 hypridle
-                waybar
+                # waybar
                 flameshot
                 wev
                 mpvpaper
@@ -89,6 +92,9 @@ in
                 ags
 
                 # misc
+                winboat.winboat
+                freerdp
+                cava
                 bluetuith
                 papirus-icon-theme
                 nerd-fonts.iosevka-term-slab

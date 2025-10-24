@@ -17,20 +17,21 @@
                 };
 
                 plugins = [
-                        {
-                                name = "nix-shell";
-                                file = "nix-shell.plugin.zsh";
-                                src = pkgs.fetchFromGitHub {
-                                        owner = "chisui";
-                                        repo = "zsh-nix-shell";
-                                        rev = "v0.8.0";
-                                        sha256 = "1lzrn0n4fxfcgg65v0qhnj7wnybybqzs4adz7xsrkgmcsr0ii8b7";
-                                };
-                        }
+                        # {
+                        #         name = "nix-shell";
+                        #         file = "nix-shell.plugin.zsh";
+                        #         src = pkgs.fetchFromGitHub {
+                        #                 owner = "chisui";
+                        #                 repo = "zsh-nix-shell";
+                        #                 rev = "v0.8.0";
+                        #                 sha256 = "1lzrn0n4fxfcgg65v0qhnj7wnybybqzs4adz7xsrkgmcsr0ii8b7";
+                        #         };
+                        # }
                 ];
 
                 shellAliases = {
                         ls = "eza -laTL 2 --git --git-repos --icons=always --hyperlink ";
+                        cp = "cp -rv ";
                         cat = "bat";
                         hm = "home-manager";
                         hms = "home-manager switch --impure";
@@ -48,6 +49,7 @@
 
                 initContent = ''
                         export PATH=$PATH:$HOME/.bin:$HOME/.cargo/bin/
+                        export EDITOR=nvim
 
                         function cargo() {
                                 if [ $1 = "run" ] ||
@@ -104,11 +106,16 @@
 
         programs.zed-editor = {
                 enable = true;
-                package = pkgs.zed-editor-fhs;
-                extraPackages = with pkgs; [
+                package = pkgs.zed-editor.fhsWithPackages (pkgs: (with pkgs; [
+                        openssl
                         libz
                         nerd-fonts.iosevka-term-slab
-                ];
+                ]));
+                # extraPackages = with pkgs; [
+                #         openssl
+                #         libz
+                #         nerd-fonts.iosevka-term-slab
+                # ];
         };
 
         programs.kitty.enable = true;

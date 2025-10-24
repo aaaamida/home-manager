@@ -7,6 +7,7 @@
                 ./files.nix
                 ./hypr.nix
                 ./systemd.nix
+                ./vars.nix
 	];
 
         home = {
