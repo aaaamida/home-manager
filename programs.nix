@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, inputs, fetchgit, ... }:
 
 {
         programs.zsh = {
@@ -16,18 +16,7 @@
                         theme = "refined";
                 };
 
-                plugins = [
-                        # {
-                        #         name = "nix-shell";
-                        #         file = "nix-shell.plugin.zsh";
-                        #         src = pkgs.fetchFromGitHub {
-                        #                 owner = "chisui";
-                        #                 repo = "zsh-nix-shell";
-                        #                 rev = "v0.8.0";
-                        #                 sha256 = "1lzrn0n4fxfcgg65v0qhnj7wnybybqzs4adz7xsrkgmcsr0ii8b7";
-                        #         };
-                        # }
-                ];
+                plugins = [ ];
 
                 shellAliases = {
                         ls = "eza -laTL 2 --git --git-repos --icons=always --hyperlink ";
@@ -72,6 +61,70 @@
                         ignoreAllDups = true;
                         path = "$HOME/.zsh_history";
                 };
+        };
+
+        programs.nushell = {
+                enable = true;
+                extraConfig = ''
+                        let carapace_completer = {|spans|
+                                carapace $spans.0 nushell ...$spans | from json
+                        }
+
+                        source-env ~/.df/mocha.nu
+
+                        $env.config = {
+                                show_banner: false
+                                completions: {
+                                        case_sensitive: false
+                                        quick: true
+                                        partial: true
+                                        algorithm: "fuzzy"
+                                        external: {
+                                                enable: true
+                                                max_results: 100
+                                                completer: $carapace_completer
+                                        }
+                                }
+                        }
+
+                        $env.config.hooks.pre_prompt = [{
+                                mommy -s $env.LAST_EXIT_CODE | print
+                        }]
+
+                        $env.PROMPT_COMMAND_RIGHT = {||}
+                        $env.PROMPT_COMMAND = { $"\n($env.PWD)\n" }
+                        $env.PROMPT_INDICATOR = "❯ "
+
+                        $env.config.table.mode = 'thin'
+
+                        $env.config.buffer_editor = 'nvim'
+
+                        alias cat = bat
+                        alias hm = home-manager
+                        alias hms = home-manager switch --impure
+                        alias nv = nvim
+                        alias lg = lazygit
+                        alias reboot = sudo systemctl reboot
+                        alias poweroff = sudo systemctl poweroff
+                        alias alien = nix-alien
+                        alias nsh = nix-shell --command "zsh; exit"
+                        alias ngc = nix-collect-garbage
+                        alias xopen = xdg-open
+                        alias cnf = command-not-found
+                        alias inx = echo $env.IN_NIX_SHELL
+                        alias leptos = cargo leptos
+
+                        zoxide init nushell | save -f ~/.zoxide.nu
+                        source ~/.zoxide.nu
+
+                        warp-cli connect | ignore
+
+                '';
+        };
+
+        programs.carapace = {
+                enable = true;
+                enableNushellIntegration = true;
         };
 
         programs.neovim = {

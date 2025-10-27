@@ -104,6 +104,7 @@ in
                 nerd-fonts.iosevka-term-slab
                 pavucontrol
                 bluez
+                mommy
                 amdgpu_top
                 nvtopPackages.amd
                 docker
