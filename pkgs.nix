@@ -41,7 +41,7 @@ in
                 gh
                 fastfetch
                 hyfetch
-                yt-dlp
+                # yt-dlp
                 betterdiscordctl
                 appimage-run
                 zoxide
@@ -66,6 +66,8 @@ in
 
                 # PL tools
                 rustup
+                cargo-leptos
+                cargo-mommy
                 python314
                 clang
                 libgcc
@@ -73,6 +75,8 @@ in
                 cmake
                 go
                 typst
+                nil
+                nixd
 
                 # wm
                 wl-clipboard

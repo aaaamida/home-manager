@@ -13,7 +13,7 @@
 
         programs.hyprpanel = {
                 enable = true;
-                dontAssertNotificationDaemons = true;
+                # dontAssertNotificationDaemons = true;
         };
 
         services.dunst = {

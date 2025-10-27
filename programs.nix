@@ -45,6 +45,7 @@
                         open = "xdg-open";
                         cnf = "command-not-found";
                         inx = "echo $IN_NIX_SHELL";
+                        leptos = "cargo leptos";
                 };
 
                 initContent = ''
@@ -85,7 +86,7 @@
 
         programs.git = {
                 enable = true;
-                extraConfig = {
+                settings = {
                         diff = {
                                 external = "difft";
                         };
@@ -132,10 +133,10 @@
                 theme = /home/amida/.df/hypr/rofi/themes/dmenu.rasi;
         };
 
-        programs.waybar = {
-                enable = true;
-                systemd.enable = true;
-        };
+        # programs.waybar = {
+        #         enable = true;
+        #         systemd.enable = true;
+        # };
 
 	programs.yazi = {
 		enable = true;
