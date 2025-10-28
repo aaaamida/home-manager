@@ -88,14 +88,38 @@
                         }
 
                         $env.config.hooks.pre_prompt = [{
-                                mommy -s $env.LAST_EXIT_CODE | print
+                                mommy -1 -s $env.LAST_EXIT_CODE | print
                         }]
 
                         $env.PROMPT_COMMAND_RIGHT = {||}
-                        $env.PROMPT_COMMAND = { $"\n($env.PWD)\n" }
                         $env.PROMPT_INDICATOR = "❯ "
+                        $env.PROMPT_COMMAND = {
+                                mut pwd = $env.PWD | str replace $env.HOME "~"
+                                mut prompt = $"\n(ansi '#FFAEAE')($pwd)(ansi reset)\n"
 
-                        $env.config.table.mode = 'thin'
+                                if (echo ".git" | path exists) {
+                                        let branch = git branch --show-current
+                                        let pink_bold = {
+                                                fg: "#FFAEAE"
+                                                bg: "#000000"
+                                                attr: b
+                                        }
+                                        $pwd = $env.PWD | path basename
+                                        let dir_color = ansi -e $pink_bold
+                                        let reset = ansi reset
+                                        let gray = ansi '#777777'
+                                        mut nix_shell = ""
+
+                                        if ($env.IN_NIX_SHELL | is-not-empty) {
+                                                $nix_shell = $"(ansi '#7EB7E2')nix:(ansi '#4F73BC')($env.IN_NIX_SHELL)"
+                                        }
+
+                                        $prompt = $"\n($dir_color)($pwd)($reset) ($gray)git:($branch) ($nix_shell)($reset)\n"
+                                }
+
+                                $prompt
+                        }
+                        $env.config.table.mode = 'light'
 
                         $env.config.buffer_editor = 'nvim'
 
@@ -107,7 +131,7 @@
                         alias reboot = sudo systemctl reboot
                         alias poweroff = sudo systemctl poweroff
                         alias alien = nix-alien
-                        alias nsh = nix-shell --command "zsh; exit"
+                        alias nsh = nix-shell --command "nu; exit"
                         alias ngc = nix-collect-garbage
                         alias xopen = xdg-open
                         alias cnf = command-not-found
