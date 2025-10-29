@@ -91,6 +91,7 @@
                                 mommy -1 -s $env.LAST_EXIT_CODE | print
                         }]
 
+                        $env.IN_NIX_SHELL = ""
                         $env.PROMPT_COMMAND_RIGHT = {||}
                         $env.PROMPT_INDICATOR = "❯ "
                         $env.PROMPT_COMMAND = {
@@ -124,6 +125,8 @@
                         $env.config.buffer_editor = 'nvim'
 
                         alias cat = bat
+                        alias rd = rmdir
+                        alias md = mkdir
                         alias hm = home-manager
                         alias hms = home-manager switch --impure
                         alias nv = nvim

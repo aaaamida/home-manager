@@ -13,6 +13,15 @@ let
                 hash  = "sha256-QYIM2bcK9WOhvbjZ8REHAdwbWLTz9fEh+34ssPM3j4Q=";
         }) {};
 
+        mommy = pkgs.mommy.overrideAttrs (oldAttrs: {
+                src = pkgs.fetchFromGitHub {
+                        owner = "aaaamida";
+                        repo = "mommy";
+                        rev = "16b36486c6412e9a587b3ba2f400130f1ce2017a";
+                        hash = "sha256-HKaEw9utxz3vNtey5I4WOhF0v9EevUaLy0Ss3McTeX8=";
+                };
+        });
+
         krisp-patcher = pkgs.writers.writePython3Bin "krisp-patcher" {
                 libraries = with pkgs.python313Packages; [ capstone pyelftools ];
                 flakeIgnore = [ "E501" "F403" "F405" ];
