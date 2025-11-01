@@ -94,7 +94,13 @@
                         $env.IN_NIX_SHELL = ""
                         $env.PROMPT_MULTILINE_INDICATOR = "::"
                         $env.PROMPT_COMMAND_RIGHT = {||}
-                        $env.PROMPT_INDICATOR = "❯ "
+                        $env.PROMPT_INDICATOR = {
+                                if $env.LAST_EXIT_CODE != 0 {
+                                        $"(ansi red)❯ (ansi reset)"
+                                } else {
+                                        "❯ "
+                                }
+                        }
                         $env.PROMPT_COMMAND = {
                                 mut pwd = $env.PWD | str replace $env.HOME "~"
                                 mut prompt = $"\n(ansi '#FFAEAE')($pwd)(ansi reset)\n"
@@ -124,10 +130,11 @@
 
                         $env.config.buffer_editor = 'nvim'
 
+                        alias \cp = cp
+                        alias cp = cp -rvu
                         alias cat = bat
                         alias hm = home-manager
                         alias hms = home-manager switch --impure
-                        alias nv = nvim
                         alias lg = lazygit
                         alias reboot = sudo systemctl reboot
                         alias poweroff = sudo systemctl poweroff
@@ -138,9 +145,17 @@
                         alias cnf = command-not-found
                         alias inx = echo $env.IN_NIX_SHELL
                         alias leptos = cargo leptos
-
                         alias l = eza -laTL 1 --git --color=always --icons=always --no-user --no-quotes --no-permissions
                         alias lp = eza -laTL 1 --git --color=always --icons=always --no-quotes
+
+                        def nv [...args] {
+                                let sesh = "Session.vim"
+                                if ($sesh | path exists) {
+                                        nvim -S $sesh -c "normal zz" ...$args
+                                } else {
+                                        nvim ...$args
+                                }
+                        }
 
                         if not ("~/.zoxide.nu" | path exists) { touch ~/.zoxide.nu }
                         zoxide init nushell | save -f ~/.zoxide.nu

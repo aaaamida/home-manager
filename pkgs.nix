@@ -4,7 +4,7 @@ let
         ags = (builtins.getFlake https://github.com/aylur/ags/tarball/master).packages.x86_64-linux.default;
         orange3 = (builtins.getFlake https://github.com/scuggo/orange3-nix-fix/tarball/master).packages.x86_64-linux.default;
         alien = import (builtins.fetchTarball https://github.com/thiagokokada/nix-alien/tarball/master) {};
-        winboat = (builtins.getFlake https://github.com/TibixDev/winboat/tarball/master).packages.x86_64-linux;
+        # winboat = (builtins.getFlake https://github.com/TibixDev/winboat/tarball/master).packages.x86_64-linux;
 
         freedownloadmanager = import (pkgs.fetchFromGitHub {
                 owner = "aaaamida";
@@ -103,9 +103,10 @@ in
                 brightnessctl
                 nwg-displays
                 ags
+                quickshell
 
                 # misc
-                winboat.winboat
+                # winboat.winboat
                 freerdp
                 cava
                 bluetuith
