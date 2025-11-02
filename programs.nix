@@ -130,8 +130,11 @@
 
                         $env.config.buffer_editor = 'nvim'
 
-                        alias \cp = cp
-                        alias cp = cp -rvu
+                        if not ("~/.zoxide.nu" | path exists) { touch ~/.zoxide.nu }
+                        zoxide init nushell | save -f ~/.zoxide.nu
+                        source ~/.zoxide.nu
+
+                        alias cpy = cp -rvu
                         alias cat = bat
                         alias hm = home-manager
                         alias hms = home-manager switch --impure
@@ -145,8 +148,26 @@
                         alias cnf = command-not-found
                         alias inx = echo $env.IN_NIX_SHELL
                         alias leptos = cargo leptos
-                        alias l = eza -laTL 1 --git --color=always --icons=always --no-user --no-quotes --no-permissions
                         alias lp = eza -laTL 1 --git --color=always --icons=always --no-quotes
+
+                        def l [lv?: int] {
+                                let lv = match $lv {
+                                        null | 0 => 1,
+                                        _        => $lv,
+                                }
+
+                                eza -laTL $lv --git --color=always --icons=always --no-user --no-quotes --no-permissions
+                        }
+
+
+                        def lp [lv?: int] {
+                                let lv = match $lv {
+                                        null | 0 => 1,
+                                        _        => $lv,
+                                }
+
+                                eza -laTL $lv --git --color=always --icons=always --no-quotes
+                        }
 
                         def nv [...args] {
                                 let sesh = "Session.vim"
@@ -156,10 +177,6 @@
                                         nvim ...$args
                                 }
                         }
-
-                        if not ("~/.zoxide.nu" | path exists) { touch ~/.zoxide.nu }
-                        zoxide init nushell | save -f ~/.zoxide.nu
-                        source ~/.zoxide.nu
 
                         warp-cli connect | ignore
 
