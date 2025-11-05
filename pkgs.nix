@@ -6,6 +6,8 @@ let
         alien = import (builtins.fetchTarball https://github.com/thiagokokada/nix-alien/tarball/master) {};
         # winboat = (builtins.getFlake https://github.com/TibixDev/winboat/tarball/master).packages.x86_64-linux;
 
+        yt-dlp = inputs.yt-dlp.packages.${pkgs.system}.default;
+
         freedownloadmanager = import (pkgs.fetchFromGitHub {
                 owner = "aaaamida";
                 repo  = "nix-fdm";
@@ -50,7 +52,7 @@ in
                 gh
                 fastfetch
                 hyfetch
-                # yt-dlp
+                yt-dlp
                 betterdiscordctl
                 appimage-run
                 zoxide

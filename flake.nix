@@ -20,6 +20,7 @@
                         inputs.nixpkgs.follows = "nixpkgs";
                         inputs.quickshell.follows = "quickshell";
                 };
+                yt-dlp.url = "github:aaaamida/yt-dlp-flake";
         };
 
         outputs = inputs@{ self, nixpkgs, home-manager, ... }: {
