@@ -178,6 +178,11 @@
                                 }
                         }
 
+                        def ".."    [] { cd - }
+                        def "..."   [] { for _ in 2 { cd - } }
+                        def "...."  [] { for _ in 3 { cd - } }
+                        def "....." [] { for _ in 4 { cd - } }
+
                         warp-cli connect | ignore
 
                 '';
