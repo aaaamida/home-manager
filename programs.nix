@@ -38,7 +38,7 @@
                 };
 
                 initContent = ''
-                        export PATH=$PATH:$HOME/.bin:$HOME/.cargo/bin/
+                        export PATH=$PATH:$HOME/.bin:$HOME/.cargo/bin/:$HOME/.dotnet/tools/
                         export EDITOR=nvim
 
                         function cargo() {
@@ -71,6 +71,10 @@
                         }
 
                         source-env ~/.df/mocha.nu
+
+                        $env.PATH ++= [
+                                '~/.dotnet/tools/',
+                        ]
 
                         $env.config = {
                                 show_banner: false
@@ -149,6 +153,7 @@
                         alias inx = echo $env.IN_NIX_SHELL
                         alias leptos = cargo leptos
                         alias lp = eza -laTL 1 --git --color=always --icons=always --no-quotes
+                        alias rar = unrar
 
                         def l [lv?: int] {
                                 let lv = match $lv {
@@ -200,6 +205,7 @@
                 plugins = with pkgs.vimPlugins; [
                         nvim-treesitter.withAllGrammars
                         vim-go
+                        Ionide-vim
                 ];
         };
 

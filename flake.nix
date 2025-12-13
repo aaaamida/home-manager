@@ -18,9 +18,10 @@
                 noctalia = {
                         url = "github:noctalia-dev/noctalia-shell";
                         inputs.nixpkgs.follows = "nixpkgs";
-                        inputs.quickshell.follows = "quickshell";
+                        # inputs.quickshell.follows = "quickshell";
                 };
                 yt-dlp.url = "github:aaaamida/yt-dlp-flake";
+                freedownloadmanager.url = "github:aaaamida/nix-fdm";
         };
 
         outputs = inputs@{ self, nixpkgs, home-manager, ... }: {

@@ -7,13 +7,14 @@ let
         # winboat = (builtins.getFlake https://github.com/TibixDev/winboat/tarball/master).packages.x86_64-linux;
 
         yt-dlp = inputs.yt-dlp.packages.${pkgs.system}.default;
+        freedownloadmanager = inputs.freedownloadmanager.packages.${pkgs.system}.default;
 
-        freedownloadmanager = import (pkgs.fetchFromGitHub {
-                owner = "aaaamida";
-                repo  = "nix-fdm";
-                rev   = "310d406923c68d4258a1d50cbc298b6163bacc9c";
-                hash  = "sha256-QYIM2bcK9WOhvbjZ8REHAdwbWLTz9fEh+34ssPM3j4Q=";
-        }) {};
+        # freedownloadmanager = import (pkgs.fetchFromGitHub {
+        #         owner = "aaaamida";
+        #         repo  = "nix-fdm";
+        #         rev   = "310d406923c68d4258a1d50cbc298b6163bacc9c";
+        #         hash  = "sha256-QYIM2bcK9WOhvbjZ8REHAdwbWLTz9fEh+34ssPM3j4Q=";
+        # }) {};
 
         mommy = pkgs.mommy.overrideAttrs (oldAttrs: {
                 src = pkgs.fetchFromGitHub {
@@ -61,6 +62,7 @@ in
                 fd
                 p7zip
                 unzip
+                unrar
                 asciiquarium
                 libnotify
                 ripgrep
@@ -74,6 +76,8 @@ in
                 jmtpfs
                 jq
                 difftastic
+                nix-index
+                mpg123
 
                 # PL tools
                 rustup
@@ -88,6 +92,9 @@ in
                 typst
                 nil
                 nixd
+                dotnet-sdk_9
+                dotnet-runtime_9
+                zig
 
                 # wm
                 wl-clipboard
