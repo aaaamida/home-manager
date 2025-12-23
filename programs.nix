@@ -188,6 +188,10 @@
                         def "...."  [] { for _ in 3 { cd - } }
                         def "....." [] { for _ in 4 { cd - } }
 
+                        if ("~/extras.nu" | path exists) {
+                                use ~/extras.nu *
+                        }
+
                         warp-cli connect | ignore
 
                 '';

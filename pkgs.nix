@@ -4,17 +4,9 @@ let
         ags = (builtins.getFlake https://github.com/aylur/ags/tarball/master).packages.x86_64-linux.default;
         orange3 = (builtins.getFlake https://github.com/scuggo/orange3-nix-fix/tarball/master).packages.x86_64-linux.default;
         alien = import (builtins.fetchTarball https://github.com/thiagokokada/nix-alien/tarball/master) {};
-        # winboat = (builtins.getFlake https://github.com/TibixDev/winboat/tarball/master).packages.x86_64-linux;
 
         yt-dlp = inputs.yt-dlp.packages.${pkgs.system}.default;
-        freedownloadmanager = inputs.freedownloadmanager.packages.${pkgs.system}.default;
-
-        # freedownloadmanager = import (pkgs.fetchFromGitHub {
-        #         owner = "aaaamida";
-        #         repo  = "nix-fdm";
-        #         rev   = "310d406923c68d4258a1d50cbc298b6163bacc9c";
-        #         hash  = "sha256-QYIM2bcK9WOhvbjZ8REHAdwbWLTz9fEh+34ssPM3j4Q=";
-        # }) {};
+        # freedownloadmanager = inputs.freedownloadmanager.packages.${pkgs.system}.default;
 
         mommy = pkgs.mommy.overrideAttrs (oldAttrs: {
                 src = pkgs.fetchFromGitHub {
@@ -39,13 +31,14 @@ in
                 zen-browser
                 discord
                 youtube-music
-                freedownloadmanager
+                # freedownloadmanager
                 feh
                 mpv
                 libreoffice-qt6-fresh
                 zathura
                 obs-studio
                 orange3
+                qbittorrent-enhanced
 
                 # CLI utils
                 lazygit
@@ -78,6 +71,8 @@ in
                 difftastic
                 nix-index
                 mpg123
+                timg
+                sqlite-interactive
 
                 # PL tools
                 rustup
@@ -115,7 +110,7 @@ in
                 quickshell
 
                 # misc
-                # winboat.winboat
+                winboat
                 freerdp
                 cava
                 bluetuith
