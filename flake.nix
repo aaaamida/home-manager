@@ -22,6 +22,7 @@
                 };
                 yt-dlp.url = "github:aaaamida/yt-dlp-flake";
                 freedownloadmanager.url = "github:aaaamida/nix-fdm";
+                krisp-patcher.url = "git+https://git.gay/amida/krisp-patcher";
         };
 
         outputs = inputs@{ self, nixpkgs, home-manager, ... }: {

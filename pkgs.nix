@@ -7,6 +7,7 @@ let
 
         yt-dlp = inputs.yt-dlp.packages.${pkgs.system}.default;
         # freedownloadmanager = inputs.freedownloadmanager.packages.${pkgs.system}.default;
+        krisp-patcher = inputs.krisp-patcher.packages.${pkgs.system}.default;
 
         mommy = pkgs.mommy.overrideAttrs (oldAttrs: {
                 src = pkgs.fetchFromGitHub {
@@ -16,14 +17,6 @@ let
                         hash = "sha256-HKaEw9utxz3vNtey5I4WOhF0v9EevUaLy0Ss3McTeX8=";
                 };
         });
-
-        krisp-patcher = pkgs.writers.writePython3Bin "krisp-patcher" {
-                libraries = with pkgs.python313Packages; [ capstone pyelftools ];
-                flakeIgnore = [ "E501" "F403" "F405" ];
-        } (builtins.readFile (pkgs.fetchurl {
-                url = "https://pastebin.com/raw/8tQDsMVd";
-                sha256 = "sha256-IdXv0MfRG1/1pAAwHLS2+1NESFEz2uXrbSdvU9OvdJ8=";
-        }));
 in
 {
         home.packages = with pkgs; [

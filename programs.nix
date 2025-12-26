@@ -92,7 +92,23 @@
                         }
 
                         $env.config.hooks.pre_prompt = [{
-                                mommy -1 -s $env.LAST_EXIT_CODE | print
+                                let exit_code = $env.LAST_EXIT_CODE
+
+                                let processed_code = if $exit_code < 0 {
+                                        match $exit_code {
+                                                -2  => 130, # SIGINT (interrupt)
+                                                -4  => 132, # SIGILL (illegal instruction)
+                                                -6  => 134, # SIGABRT (process abort)
+                                                -9  => 137, # SIGKILL (process killed)
+                                                -11 => 139, # SIGSEGV (segmentation fault)
+                                                -15 => 143, # SIGTERM (process terminate)
+                                                _   => 1,
+                                        }
+                                } else {
+                                        $exit_code
+                                }
+
+                                ^mommy -s $processed_code
                         }]
 
                         $env.IN_NIX_SHELL = ""
@@ -139,7 +155,7 @@
                         source ~/.zoxide.nu
 
                         alias cpy = cp -rvu
-                        alias cat = bat
+                        alias md = mkdir
                         alias hm = home-manager
                         alias hms = home-manager switch --impure
                         alias lg = lazygit
@@ -188,9 +204,7 @@
                         def "...."  [] { for _ in 3 { cd - } }
                         def "....." [] { for _ in 4 { cd - } }
 
-                        if ("~/extras.nu" | path exists) {
-                                use ~/extras.nu *
-                        }
+                        # if ($"($env.HOME)/mod.nu" | path exists ) { use mod.nu * }
 
                         warp-cli connect | ignore
 
