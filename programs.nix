@@ -199,6 +199,13 @@
                                 }
                         }
 
+                        # crude implementation of zsh command substitution
+                        def "%" [prev: string, new: string] {
+                                let last_cmd = (history | last 1 | get command.0)
+                                let new_cmd = ($last_cmd | str replace $prev $new)
+                                nu -c $new_cmd
+                        }
+
                         def ".."    [] { cd - }
                         def "..."   [] { for _ in 2 { cd - } }
                         def "...."  [] { for _ in 3 { cd - } }

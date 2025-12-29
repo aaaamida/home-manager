@@ -23,6 +23,7 @@ in
                 # GUI apps
                 zen-browser
                 discord
+                # dorion
                 youtube-music
                 # freedownloadmanager
                 feh
