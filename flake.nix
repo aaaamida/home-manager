@@ -22,7 +22,9 @@
                 };
                 yt-dlp.url = "github:aaaamida/yt-dlp-flake";
                 freedownloadmanager.url = "github:aaaamida/nix-fdm";
+                helium.url = "git+https://git.gay/amida/helium-browser-flake";
                 krisp-patcher.url = "git+https://git.gay/amida/krisp-patcher";
+                zhao-cur.url = "git+ssh://git@git.gay/amida/zhao-cur";
         };
 
         outputs = inputs@{ self, nixpkgs, home-manager, ... }: {

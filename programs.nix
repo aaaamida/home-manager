@@ -91,25 +91,25 @@
                                 }
                         }
 
-                        $env.config.hooks.pre_prompt = [{
-                                let exit_code = $env.LAST_EXIT_CODE
-
-                                let processed_code = if $exit_code < 0 {
-                                        match $exit_code {
-                                                -2  => 130, # SIGINT (interrupt)
-                                                -4  => 132, # SIGILL (illegal instruction)
-                                                -6  => 134, # SIGABRT (process abort)
-                                                -9  => 137, # SIGKILL (process killed)
-                                                -11 => 139, # SIGSEGV (segmentation fault)
-                                                -15 => 143, # SIGTERM (process terminate)
-                                                _   => 1,
-                                        }
-                                } else {
-                                        $exit_code
-                                }
-
-                                ^mommy -s $processed_code
-                        }]
+                        # $env.config.hooks.pre_prompt = [{
+                        #         let exit_code = $env.LAST_EXIT_CODE
+                        #
+                        #         let processed_code = if $exit_code < 0 {
+                        #                 match $exit_code {
+                        #                         -2  => 130, # SIGINT (interrupt)
+                        #                         -4  => 132, # SIGILL (illegal instruction)
+                        #                         -6  => 134, # SIGABRT (process abort)
+                        #                         -9  => 137, # SIGKILL (process killed)
+                        #                         -11 => 139, # SIGSEGV (segmentation fault)
+                        #                         -15 => 143, # SIGTERM (process terminate)
+                        #                         _   => 1,
+                        #                 }
+                        #         } else {
+                        #                 $exit_code
+                        #         }
+                        #
+                        #         ^mommy -s $processed_code
+                        # }]
 
                         $env.IN_NIX_SHELL = ""
                         $env.PROMPT_MULTILINE_INDICATOR = "::"
@@ -170,6 +170,8 @@
                         alias leptos = cargo leptos
                         alias lp = eza -laTL 1 --git --color=always --icons=always --no-quotes
                         alias rar = unrar
+                        alias copy = wl-copy
+                        alias paste = wl-paste
 
                         def l [lv?: int] {
                                 let lv = match $lv {
@@ -211,11 +213,18 @@
                         def "...."  [] { for _ in 3 { cd - } }
                         def "....." [] { for _ in 4 { cd - } }
 
-                        # if ($"($env.HOME)/mod.nu" | path exists ) { use mod.nu * }
-
-                        warp-cli connect | ignore
-
+                        mkdir ($nu.data-dir | path join "vendor/autoload")
+                        starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
                 '';
+        };
+
+        programs.starship = {
+                enable = true;
+                settings = {
+                        add_newline = true;
+                        command_timeout = 3000;
+                        scan_timeout = 60;
+                };
         };
 
         programs.carapace = {
@@ -236,11 +245,7 @@
 
         programs.git = {
                 enable = true;
-                settings = {
-                        diff = {
-                                external = "difft";
-                        };
-                };
+                settings.diff.external = "difft";
         };
 
         programs.helix = {

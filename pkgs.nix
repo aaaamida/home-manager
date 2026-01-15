@@ -5,9 +5,10 @@ let
         orange3 = (builtins.getFlake https://github.com/scuggo/orange3-nix-fix/tarball/master).packages.x86_64-linux.default;
         alien = import (builtins.fetchTarball https://github.com/thiagokokada/nix-alien/tarball/master) {};
 
-        yt-dlp = inputs.yt-dlp.packages.${pkgs.system}.default;
-        # freedownloadmanager = inputs.freedownloadmanager.packages.${pkgs.system}.default;
+        yt-dlp        = inputs.yt-dlp.packages.${pkgs.system}.default;
         krisp-patcher = inputs.krisp-patcher.packages.${pkgs.system}.default;
+        helium        = inputs.helium.packages.${pkgs.system}.default;
+        zhao-cur      = inputs.zhao-cur.packages.${pkgs.system};
 
         mommy = pkgs.mommy.overrideAttrs (oldAttrs: {
                 src = pkgs.fetchFromGitHub {
@@ -22,6 +23,7 @@ in
         home.packages = with pkgs; [
                 # GUI apps
                 zen-browser
+                helium
                 discord
                 # dorion
                 youtube-music
@@ -33,6 +35,8 @@ in
                 obs-studio
                 orange3
                 qbittorrent-enhanced
+                # rustdesk
+                teamviewer
 
                 # CLI utils
                 lazygit
@@ -69,20 +73,13 @@ in
                 sqlite-interactive
 
                 # PL tools
-                rustup
-                cargo-leptos
+                # rustup
+                # cargo-leptos
                 cargo-mommy
                 python314
-                clang
-                libgcc
-                gnumake
-                cmake
-                go
                 typst
                 nil
                 nixd
-                dotnet-sdk_9
-                dotnet-runtime_9
                 zig
 
                 # wm
@@ -93,7 +90,6 @@ in
                 hyprpaper
                 hyprshot
                 hypridle
-                # waybar
                 flameshot
                 wev
                 mpvpaper
@@ -104,6 +100,8 @@ in
                 quickshell
 
                 # misc
+                zhao-cur.hyprcursor
+                zhao-cur.xcursor
                 winboat
                 freerdp
                 cava
