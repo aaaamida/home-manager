@@ -9,6 +9,7 @@ let
         krisp-patcher = inputs.krisp-patcher.packages.${pkgs.system}.default;
         helium        = inputs.helium.packages.${pkgs.system}.default;
         zhao-cur      = inputs.zhao-cur.packages.${pkgs.system};
+        oxicord       = inputs.oxicord.packages.${pkgs.system}.default;
 
         mommy = pkgs.mommy.overrideAttrs (oldAttrs: {
                 src = pkgs.fetchFromGitHub {
@@ -37,6 +38,7 @@ in
                 qbittorrent-enhanced
                 # rustdesk
                 teamviewer
+                gimp
 
                 # CLI utils
                 lazygit
@@ -71,6 +73,7 @@ in
                 mpg123
                 timg
                 sqlite-interactive
+                oxicord
 
                 # PL tools
                 # rustup

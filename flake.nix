@@ -25,6 +25,7 @@
                 helium.url = "git+https://git.gay/amida/helium-browser-flake";
                 krisp-patcher.url = "git+https://git.gay/amida/krisp-patcher";
                 zhao-cur.url = "git+ssh://git@git.gay/amida/zhao-cur";
+                oxicord.url = "github:linuxmobile/oxicord";
         };
 
         outputs = inputs@{ self, nixpkgs, home-manager, ... }: {
