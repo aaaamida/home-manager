@@ -85,7 +85,7 @@ in
     adbfs-rootless
     aria2
     # kubernetes
-    k3s
+    # k3s
 
     # PL tools
     rustup
@@ -100,7 +100,6 @@ in
     # wm
     wl-clipboard
     wl-clipboard-x11
-    xdg-desktop-portal-hyprland
     hyprcursor
     hyprpaper
     hyprshot
