@@ -1,22 +1,42 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, lib, inputs, ... }:
 
 {
-	imports = [
-                ./pkgs.nix
-                ./programs.nix
-                ./files.nix
-                ./hypr.nix
-                ./systemd.nix
-                ./vars.nix
+  imports = [
+    ./pkgs.nix
+    ./programs.nix
+    ./files.nix
+    ./hypr.nix
+    ./services.nix
+    ./vars.nix
 	];
 
-        home = {
-                username = "amida";
-                homeDirectory = "/home/amida";
-                stateVersion = "25.05";
-        };
+  home = {
+    username = "amida";
+    homeDirectory = "/home/amida";
+    stateVersion = "25.05";
+    activation = {
+      noctalia-shell = lib.hm.dag.entryAfter ["writeBoundary"] ''
+        settings_dir="$HOME/.local/state/noctalia"
+        settings_file="$settings_dir/settings.toml"
+        config_dir="$HOME/.config/noctalia"
+        config_link="$config_dir/settings.toml"
 
-        nixpkgs.config.allowUnfree = true;
+        mkdir -p "$settings_dir"
+        mkdir -p "$config_dir"
+
+        if [ ! -f "$settings_file" ]; then
+          echo '{}' > "$settings_file"
+        fi
+
+        if [ ! -L "$config_link" ] || [ "$(readlink "$config_link")" != "$settings_file" ]; then
+          rm -f "$config_link"
+          ln -s "$settings_file" "$config_link"
+        fi
+      '';
+    };
+  };
+
+  nixpkgs.config.allowUnfree = true;
 	home.enableNixpkgsReleaseCheck = false;
-        programs.home-manager.enable = true;
+  programs.home-manager.enable = true;
 }

@@ -1,35 +1,38 @@
 { config, pkgs, inputs, ... }:
 
 {
-        imports = [ inputs.noctalia.homeModules.default ];
+  imports = [ inputs.noctalia.homeModules.default ];
 
-        wayland.windowManager.hyprland = {
-                enable = false;
-                systemd = {
-                        enable = true;
-                        variables = [ "--all" ];
-                };
-        };
+  wayland.windowManager.hyprland = {
+    enable = false;
+    systemd = {
+      enable = true;
+      variables = [ "--all" ];
+    };
+    plugins = [
+      pkgs.hyprlandPlugins.hyprscrolling
+    ];
+  };
 
-        programs.hyprlock.enable = true;
+  programs.hyprlock.enable = true;
 
-        programs.hyprpanel = {
-                enable = true;
-                # dontAssertNotificationDaemons = true;
-        };
+  programs.hyprpanel = {
+    enable = true;
+    # dontAssertNotificationDaemons = true;
+  };
 
-        programs.noctalia-shell = {
-                enable = true;
-                settings = builtins.fromJSON (builtins.readFile /home/amida/.config/noctalia/writable_settings.json);
-        };
+  # programs.noctalia-shell = {
+  #   enable = true;
+  #   # settings = builtins.fromJSON (builtins.readFile /home/amida/.config/noctalia/writable_settings.json);
+  # };
 
-        services.dunst = {
-                enable = false;
-                configFile = /home/amida/.df/hypr/dunst/dunstrc;
-        };
+  services.dunst = {
+    enable = false;
+    configFile = /home/amida/.df/hypr/dunst/dunstrc;
+  };
 
-        services.cliphist = {
-                enable = true;
-                allowImages = true;
-        };
+  services.cliphist = {
+    enable = true;
+    allowImages = true;
+  };
 }
