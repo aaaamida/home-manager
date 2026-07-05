@@ -5,7 +5,6 @@
     ./pkgs.nix
     ./programs.nix
     ./files.nix
-    ./hypr.nix
     ./services.nix
     ./vars.nix
 	];
@@ -13,7 +12,7 @@
   home = {
     username = "amida";
     homeDirectory = "/home/amida";
-    stateVersion = "25.05";
+    stateVersion = "26.05";
     activation = {
       noctalia-shell = lib.hm.dag.entryAfter ["writeBoundary"] ''
         settings_dir="$HOME/.local/state/noctalia"

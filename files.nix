@@ -31,25 +31,6 @@ in
       force = true;
     };
 
-    hyprland = {
-      recursive = true;
-      source = /home/amida/.df/hypr;
-      target = "hypr";
-      force = true;
-    };
-
-    hyprlock = {
-      source = /home/amida/.df/hypr/lock;
-      target = "hyprlock";
-      force = true;
-    };
-
-    hypridle = {
-      source = /home/amida/.df/hypr/idle;
-      target = "hypridle";
-      force = true;
-    };
-
     "flameshot/flameshot.ini".text = ''
       [General]
       autoCloseIdleDaemon=true

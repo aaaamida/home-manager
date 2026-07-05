@@ -16,14 +16,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
       # inputs.quickshell.follows = "quickshell";
     };
-    # hyprland.url = "github:hyprwm/Hyprland";
-    # hyprland-plugins = {
-    #   url = "github:hyprwm/hyprland-plugins";
-    #   inputs.hyprland.follows = "hyprland";
-    # };
-    # kopuz.url = "github:temidaradev/kopuz";
 
-    helium.url = "git+https://git.gay/amida/helium-browser-flake";
+    nixcord.url = "github:4evy/nixcord";
     krisp-patcher.url = "git+https://git.gay/amida/krisp-patcher";
     kira-studio.url = "git+https://git.gay/amida/kira-studio-flake";
     zhao-cur.url = "git+ssh://git@git.gay/amida/zhao-cur";
