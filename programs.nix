@@ -1,6 +1,11 @@
 { config, pkgs, inputs, fetchgit, ... }:
 
 {
+  imports = [
+    inputs.noctalia.homeModules.default
+    inputs.nixcord.homeModules.nixcord
+  ];
+
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -279,7 +284,13 @@
 
   programs.git = {
     enable = true;
-    settings.diff.external = "difft";
+    settings = {
+      user = {
+        name = "Amida Kurniawati";
+        email = "aaaamida6747@gmail.com";
+      };
+      diff.external = "difft";
+    };
   };
 
   programs.helix = {
@@ -304,6 +315,60 @@
   };
 
   programs.kitty.enable = true;
+
+  programs.nixcord = {
+    enable = true;
+    discord.vencord.enable = true;
+
+    config.plugins = {
+      betterFolders.enable = true;
+      biggerStreamPreview.enable = true;
+      blurNsfw.enable = true;
+      callTimer.enable = true;
+      characterCounter.enable = true;
+      clearUrls.enable = true;
+      copyFileContents.enable = true;
+      crashHandler.enable = true;
+      customRpc.enable = true;
+      fakeNitro.enable = true;
+      fixImagesQuality.enable = true;
+      gifPaste.enable = true;
+      imageLink.enable = true;
+      imageZoom.enable = true;
+      ircColors = {
+        enable = true;
+        applyColorOnlyInDms = true;
+      };
+      messageLogger.enable = true;
+      noProfileThemes.enable = true;
+      petpet.enable = true;
+      pinDms = {
+        enable = true;
+        userBasedCategoryList = {
+          "1128220398719348808" = [ ];
+        };
+      };
+      platformIndicators = {
+        enable = true;
+        messages = false;
+      };
+      shikiCodeblocks = {
+        enable = true;
+        bgOpacity = 80.0;
+      };
+      showHiddenChannels.enable = true;
+      unindent.enable = true;
+      youtubeAdblock.enable = true;
+    };
+    extraConfig.plugins = {
+      platformIndicators = {
+        badges = true;
+      };
+      showHiddenChannels = {
+        hideUnreads = true;
+      };
+    };
+  };
 
   programs.tmux = {
     enable = true;

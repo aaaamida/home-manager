@@ -26,8 +26,7 @@ in
   home.packages = with pkgs; [
     # GUI apps
     zen-browser
-    helium
-    discord
+    # helium
     feh
     mpv
     libreoffice-qt6-fresh
@@ -44,7 +43,7 @@ in
     }))
     karere
     pinta
-    # kopuz
+    # (discord.override { withVencord = true; })
 
     # CLI utils
     lazygit

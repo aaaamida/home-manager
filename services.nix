@@ -5,6 +5,12 @@
     tomat.enable = true;
     ollama.enable = true;
     easyeffects.enable = true;
+
+    cliphist = {
+      enable = true;
+      allowImages = true;
+    };
+
     rescrobbled = {
       enable = true;
       settings = {
